@@ -15,5 +15,7 @@ namespace OJT_Management.Data
         }
 
         public DbSet<OJT_Management.Models.Staff> Staff { get; set; } = default!;
+
+        public DbSet<OJT_Management.Models.SubjectMatter>? SubjectMatter { get; set; }
     }
 }
