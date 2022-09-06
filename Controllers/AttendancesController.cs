@@ -10,87 +10,87 @@ using OJT_Management.Models;
 
 namespace OJT_Management.Controllers
 {
-    public class SubjectMattersController : Controller
+    public class AttendancesController : Controller
     {
         private readonly OJT_ManagementContext _context;
 
-        public SubjectMattersController(OJT_ManagementContext context)
+        public AttendancesController(OJT_ManagementContext context)
         {
             _context = context;
         }
 
-        // GET: SubjectMatters
+        // GET: Attendances
         public async Task<IActionResult> Index()
         {
-              return _context.SubjectMatter != null ? 
-                          View(await _context.SubjectMatter.ToListAsync()) :
-                          Problem("Entity set 'OJT_ManagementContext.SubjectMatter'  is null.");
+              return _context.Attendance != null ? 
+                          View(await _context.Attendance.ToListAsync()) :
+                          Problem("Entity set 'OJT_ManagementContext.Attendance'  is null.");
         }
 
-        // GET: SubjectMatters/Details/5
+        // GET: Attendances/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.SubjectMatter == null)
+            if (id == null || _context.Attendance == null)
             {
                 return NotFound();
             }
 
-            var subjectMatter = await _context.SubjectMatter
+            var attendance = await _context.Attendance
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (subjectMatter == null)
+            if (attendance == null)
             {
                 return NotFound();
             }
 
-            return View(subjectMatter);
+            return View(attendance);
         }
 
-        // GET: SubjectMatters/Create
+        // GET: Attendances/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: SubjectMatters/Create
+        // POST: Attendances/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Topic,Comments,AreaofOperation,SubjectMatterDate")] SubjectMatter subjectMatter)
+        public async Task<IActionResult> Create([Bind("Id,Name,AttendanceDate")] Attendance attendance)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(subjectMatter);
+                _context.Add(attendance);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(subjectMatter);
+            return View(attendance);
         }
 
-        // GET: SubjectMatters/Edit/5
+        // GET: Attendances/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.SubjectMatter == null)
+            if (id == null || _context.Attendance == null)
             {
                 return NotFound();
             }
 
-            var subjectMatter = await _context.SubjectMatter.FindAsync(id);
-            if (subjectMatter == null)
+            var attendance = await _context.Attendance.FindAsync(id);
+            if (attendance == null)
             {
                 return NotFound();
             }
-            return View(subjectMatter);
+            return View(attendance);
         }
 
-        // POST: SubjectMatters/Edit/5
+        // POST: Attendances/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Topic,Comments,AreaofOperation,SubjectMatterDate")] SubjectMatter subjectMatter)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,AttendanceDate")] Attendance attendance)
         {
-            if (id != subjectMatter.Id)
+            if (id != attendance.Id)
             {
                 return NotFound();
             }
@@ -99,12 +99,12 @@ namespace OJT_Management.Controllers
             {
                 try
                 {
-                    _context.Update(subjectMatter);
+                    _context.Update(attendance);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!SubjectMatterExists(subjectMatter.Id))
+                    if (!AttendanceExists(attendance.Id))
                     {
                         return NotFound();
                     }
@@ -115,49 +115,49 @@ namespace OJT_Management.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(subjectMatter);
+            return View(attendance);
         }
 
-        // GET: SubjectMatters/Delete/5
+        // GET: Attendances/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.SubjectMatter == null)
+            if (id == null || _context.Attendance == null)
             {
                 return NotFound();
             }
 
-            var subjectMatter = await _context.SubjectMatter
+            var attendance = await _context.Attendance
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (subjectMatter == null)
+            if (attendance == null)
             {
                 return NotFound();
             }
 
-            return View(subjectMatter);
+            return View(attendance);
         }
 
-        // POST: SubjectMatters/Delete/5
+        // POST: Attendances/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.SubjectMatter == null)
+            if (_context.Attendance == null)
             {
-                return Problem("Entity set 'OJT_ManagementContext.SubjectMatter'  is null.");
+                return Problem("Entity set 'OJT_ManagementContext.Attendance'  is null.");
             }
-            var subjectMatter = await _context.SubjectMatter.FindAsync(id);
-            if (subjectMatter != null)
+            var attendance = await _context.Attendance.FindAsync(id);
+            if (attendance != null)
             {
-                _context.SubjectMatter.Remove(subjectMatter);
+                _context.Attendance.Remove(attendance);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool SubjectMatterExists(int id)
+        private bool AttendanceExists(int id)
         {
-          return (_context.SubjectMatter?.Any(e => e.Id == id)).GetValueOrDefault();
+          return (_context.Attendance?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

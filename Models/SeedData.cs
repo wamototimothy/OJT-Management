@@ -17,8 +17,8 @@ using System;
                     serviceProvider.GetRequiredService<
                         DbContextOptions<OJT_ManagementContext>>()))
                 {
-                    // Look for any movies.
-                    if (context.Staff.Any())
+                // Look for any staff.
+                if (context.Staff.Any()) 
                     {
                         return;   // DB has been seeded
                     }

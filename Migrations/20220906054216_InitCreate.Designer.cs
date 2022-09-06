@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OJT_Management.Data;
 
@@ -11,9 +12,10 @@ using OJT_Management.Data;
 namespace OJT_Management.Migrations
 {
     [DbContext(typeof(OJT_ManagementContext))]
-    partial class OJT_ManagementContextModelSnapshot : ModelSnapshot
+    [Migration("20220906054216_InitCreate")]
+    partial class InitCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
