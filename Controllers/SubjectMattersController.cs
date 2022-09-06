@@ -56,7 +56,7 @@ namespace OJT_Management.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Topic,Comments,AreaofOperation")] SubjectMatter subjectMatter)
+        public async Task<IActionResult> Create([Bind("Id,Topic,Comments,AreaofOperation,SubjectMatterDate")] SubjectMatter subjectMatter)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +88,7 @@ namespace OJT_Management.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Topic,Comments,AreaofOperation")] SubjectMatter subjectMatter)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Topic,Comments,AreaofOperation,SubjectMatterDate")] SubjectMatter subjectMatter)
         {
             if (id != subjectMatter.Id)
             {
